@@ -1,6 +1,6 @@
 # About Gatling report
 
-This is a reporting tool that parses [Galting](http://gatling.io/) result files (aka `simulation.log`) and creates HTML 
+This is a reporting tool that parses [Galting](http://gatling.io/) result files (aka `simulation.log`) and creates HTML
 reports with [Plotly](https://plot.ly/) charts or CSV output.
 
 
@@ -22,7 +22,7 @@ Take the latest jar from [nexus](http://maven.nuxeo.org/nexus/#nexus-search;quic
 
 Create the all in one jar:
 
-        mvn package
+        mvn package -Dmaven.test.skip=true
 
 The `jar` file that include all its dependencies is located here:
 
@@ -39,7 +39,7 @@ The `jar` file that include all its dependencies is located here:
 The following command will output to stdout a CSV with stats per request.
 
         java -jar path/to/gatling-report-VERSION-capsule-fat.jar path/to/simulation.log
-        
+
         scenario        request start   startDate       duration        end     count   successCount    errorCount      min     p50     p95     p99     max     avg     stddev  rps	apdex	rating
         sim50bench      _all    1446578664151   2015-11-03 20:24:24     62.16   1446578726313   2397    2397    0       0       10      598     940     1938    104.40  205     38.56	0.88	Good
         sim50bench      Logout  1446578664151   2015-11-03 20:24:24     62.16   1446578725039   21      21      0       1       2       15      17      17      2.38    3       0.34	1.00	Excellent
@@ -47,7 +47,7 @@ The following command will output to stdout a CSV with stats per request.
 
  - scenario: Name of the scenario in the simulation
  - request: Name of the request, _all is the total of all requests in the simulation
- - start: start timestamp of the simulation 
+ - start: start timestamp of the simulation
  - startDate: start date of the simulation
  - duration: duration of the simulatoin
  - end: last request timestamp
@@ -62,7 +62,7 @@ The following command will output to stdout a CSV with stats per request.
  - apdex: Apdex score converts many measurements into one number on a uniform scale of 0-to-1
  - rating: Apdex rating
 
-You can also submit multiple simulation files, the output will concatenate stats. 
+You can also submit multiple simulation files, the output will concatenate stats.
 
         java -jar path/to/gatling-report-VERSION-capsule-fat.jar path/to/simulation.log [path/to/simulation2.log ...]
 
@@ -70,18 +70,18 @@ You can also submit multiple simulation files, the output will concatenate stats
 You can also submit gzipped simulation files:
 
         java -jar path/to/gatling-report-VERSION-capsule-fat.jar path/to/simulation.log.gz
-         
 
-        
+
+
 ## Generate HTML report with Plotly charts
 
 When using the `-o REPORT_PATH` option a report is generated.
- 
+
 When submitting a single simulation file it creates a simulation report:
- 
+
        java -jar path/to/gatling-report-VERSION-capsule-fat.jar path/to/simulation.log.gz -o /path/to/report/directory
 
- 
+
 When submitting two simulations files it creates a differential report:
 
 
